@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class UserController {
 
@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
 //    creating user
-    @PostMapping("/register")
+    @PostMapping("/sign-up")
     public ResponseEntity<User> createUser(@RequestBody User user) throws Exception {
         try {
             Set<UserRole> setRoles = new HashSet<>();
@@ -38,18 +38,18 @@ public class UserController {
         }
         catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>(user,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(user,HttpStatus.CONFLICT);
         }
     }
 
-//    Getting User
+//    Getting User Details
     @GetMapping("/{username}")
     public ResponseEntity<User> getUser(@PathVariable("username") String username){
         try{
             return new ResponseEntity<>(this.userService.getUserInfo(username), HttpStatus.CREATED);
         }
         catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -61,7 +61,7 @@ public class UserController {
             this.userService.deleteUser(userid);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -71,7 +71,7 @@ public class UserController {
         try{
             return new ResponseEntity<>(this.userService.updateDetails(user), HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
