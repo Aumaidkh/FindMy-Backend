@@ -43,7 +43,7 @@ public class MySecurityConfig  {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login","/user/register")
+                .requestMatchers("/api/v1/login","/api/v1/sign-up")
                 .permitAll()
                 .requestMatchers(HttpMethod.OPTIONS)
                 .permitAll()
