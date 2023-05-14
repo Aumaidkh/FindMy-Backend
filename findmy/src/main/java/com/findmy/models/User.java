@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "user_phoneNo"))
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "user_phone_number"))
 
 public class User implements UserDetails {
 
@@ -24,19 +24,19 @@ public class User implements UserDetails {
     @Column(name = "user_id", length =45 )
     private Long id;
 
-    @Column(name="user_name", length = 255)
+    @Column(name="user_email", length = 255)
     private String username;
 
-    @Column(name="user_Full_name", length = 255)
+    @Column(name="user_full_name", length = 255)
     private String userFullName;
 
     @Column(name="user_password", length = 255)
     private String password;
 
-    @Column(name="user_email", length = 255)
-    private String email;
+//    @Column(name="user_email", length = 255)
+//    private String email;
 
-    @Column(name = "user_phoneNo", length = 255)
+    @Column(name = "user_phone_number", length = 255)
     private String phone;
 
     @Column(name="user_enable")
