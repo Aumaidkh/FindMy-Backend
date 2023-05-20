@@ -39,11 +39,8 @@ public class UserServiceImpl implements UserService {
             }
             user.getUserRoles().addAll(userRoles);
             register = this.userRepository.save(user);
-
         }
-
         return register;
-
     }
 
     @Override
